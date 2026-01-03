@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Trusted Financial Services for Smart Growth. Professional consulting for individuals and businesses.">
+    <title>FinGrowth | Trusted Financial Services</title>
+    
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- CSS VARIABLES --- */
+        :root {
+            --primary-color: #0f2a4a; /* Dark Blue */
+            --secondary-color: #007bff; /* Light/Bright Blue */
+            --accent-bg: #f4f7fa; /* Light Gray/Blueish bg */
+            --text-color: #333333;
+            --light-text: #666666;
+            --white: #ffffff;
+            --max-width: 1200px;
+            --transition: all 0.3s ease;
+        }
+
+        /* --- RESET & GLOBAL --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--white);
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--light-text);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            border-radius: 5px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--white);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--primary-color);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(rgba(15, 42, 74, 0.9), rgba(15, 42, 74, 0.8)), url('https://images.unsplash.com/photo-1565514020176-8c5025413101?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            color: var(--white);
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            color: #e0e0e0;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        /* --- SERVICES PREVIEW (Cards) --- */
+        .services-preview {
+            background-color: var(--accent-bg);
+            margin-top: -80px; /* Overlap effect */
+            position: relative;
+            z-index: 10;
+            padding-bottom: 80px;
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding-top: 80px;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            border-bottom: 3px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-bottom: 3px solid var(--secondary-color);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+
+        /* --- ABOUT US --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-img img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .mission-box {
+            border-left: 4px solid var(--secondary-color);
+            padding-left: 20px;
+            margin-top: 20px;
+            background: var(--accent-bg);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* --- WHY CHOOSE US --- */
+        .why-choose {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+
+        .why-choose h2 {
+            color: var(--white);
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .feature-item i {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+
+        .feature-item p {
+            color: #ccc;
+        }
+
+        /* --- FULL SERVICES --- */
+        .full-services {
+            background-color: var(--accent-bg);
+        }
+
+        /* --- CONTACT SECTION --- */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 50px;
+            background: var(--white);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .contact-info {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 50px;
+        }
+
+        .contact-info h3 {
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            color: #ddd;
+        }
+
+        .info-item {
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .info-item i {
+            color: var(--secondary-color);
+        }
+
+        .contact-form {
+            padding: 50px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+
+        .form-group input:focus, 
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #0a1c30;
+            color: #fff;
+            padding: 50px 0 20px;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin-bottom: 30px;
+        }
+
+        .footer-links a {
+            margin: 0 15px;
+            color: #ccc;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* In a real scenario, use JS to toggle */
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                flex-direction: column;
+                padding: 20px;
+                text-align: center;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .about-grid, .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Fin<span>Growth</span>.</div>
+                <div class="nav-links" id="navLinks">
+                    <a href="#home">Home</a>
+                    <a href="#about">About Us</a>
+                    <a href="#services">Services</a>
+                    <a href="#contact">Contact</a>
+                    <a href="#contact" class="btn" style="padding: 8px 20px; margin-left: 10px;">Get Consultation</a>
+                </div>
+                <div class="mobile-menu-btn" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <h1>Trusted Financial Services for Smart Growth</h1>
+            <p>Professional financial solutions to help individuals and businesses grow with confidence.</p>
+            <a href="#contact" class="btn">Get Free Consultation</a>
+        </div>
+    </section>
+
+    <!-- Services Preview Section -->
+    <section class="services-preview">
+        <div class="container">
+            <div class="preview-grid">
+                <!-- Card 1 -->
+                <div class="service-card">
+                    <i class="fas fa-chart-line service-icon"></i>
+                    <h3>Financial Consulting</h3>
+                    <p>Expert analysis to optimize your financial health and structure strategies for maximum efficiency.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="service-card">
+                    <i class="fas fa-coins service-icon"></i>
+                    <h3>Investment Planning</h3>
+                    <p>Tailored investment portfolios designed to meet your long-term wealth accumulation goals.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="service-card">
+                    <i class="fas fa-briefcase service-icon"></i>
+                    <h3>Business Advisory</h3>
+                    <p>Strategic guidance for startups and SMEs to navigate market challenges and scale effectively.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="section-padding">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <h4>About FinGrowth</h4>
+                    <h2>Your Partner in Long-Term Financial Success</h2>
+                    <p>Founded with a commitment to integrity and excellence, FinGrowth has helped hundreds of clients navigate the complex landscape of finance. We believe that true financial freedom comes from understanding the numbers and making data-driven decisions.</p>
+                    
+                    <div class="mission-box">
+                        <h3>Our Mission</h3>
+                        <p style="margin-bottom: 0;">To build trust through transparency and provide expert financial guidance that creates sustainable value for our clients.</p>
+                    </div>
+                </div>
+                <div class="about-img">
+                    <!-- Placeholder image -->
+                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Financial Team Meeting">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="section-padding why-choose">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Us</h2>
+                <p style="color: #ccc;">We bring clarity to complex financial challenges.</p>
+            </div>
+            <div class="why-grid">
+                <div class="feature-item">
+                    <i class="fas fa-handshake"></i>
+                    <h3>Trusted & Transparent</h3>
+                    <p>We operate with a fiduciary standard, ensuring your interests always come first with zero hidden fees.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-user-tie"></i>
+                    <h3>Expert Guidance</h3>
+                    <p>Our team consists of certified financial analysts and advisors with years of industry experience.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-users"></i>
+                    <h3>Client-Focused Approach</h3>
+                    <p>We don't believe in one-size-fits-all. Every strategy is customized to your specific life situation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Services Section -->
+    <section id="services" class="section-padding full-services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p>Comprehensive solutions for every stage of your financial journey.</p>
+            </div>
+            <div class="preview-grid" style="padding-top: 0;">
+                <div class="service-card">
+                    <i class="fas fa-calculator service-icon"></i>
+                    <h3>Financial Consulting</h3>
+                    <p>In-depth audits of your current financial standing with actionable roadmaps for improvement.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-seedling service-icon"></i>
+                    <h3>Investment Planning</h3>
+                    <p>Diversified portfolio management, retirement planning, and wealth preservation strategies.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-shield-alt service-icon"></i>
+                    <h3>Risk Management</h3>
+                    <p>Insurance analysis and asset protection strategies to safeguard you against unforeseen events.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-rocket service-icon"></i>
+                    <h3>Startup Advisory</h3>
+                    <p>Pitch deck refinement, cash flow management, and fundraising support for emerging businesses.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+                <p>Ready to start growing? Let's have a conversation.</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <p>Reach out to us for a free initial consultation. We are here to answer your questions.</p>
+                    <br>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>123 Financial District, Tech Park, Mumbai, India</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+91-98765-43210</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@fingrowth.com</span>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form action="#" method="POST"> <!-- Add your backend handler here -->
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" placeholder="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email Address</label>
+                            <input type="email" placeholder="john@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" placeholder="+91 XXXXX XXXXX">
+                        </div>
+                        <div class="form-group">
+                            <label>Message</label>
+                            <textarea rows="4" placeholder="How can we help you?"></textarea>
+                        </div>
+                        <button type="submit" class="btn">Request a Consultation</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="logo" style="margin-bottom: 20px;">Fin<span>Growth</span>.</div>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="copyright">
+                &copy; 2024 FinGrowth Financial Services. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple script to toggle mobile menu
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
